@@ -39,10 +39,14 @@ public class VRIKMapper : MonoBehaviour
 
     private void OnAnimatorIK(int layerIndex)
     {
-        SetIK(AvatarIKGoal.LeftHand, leftHandTarget);
-        SetIK(AvatarIKGoal.RightHand, rightHandTarget);
-        SetIK(AvatarIKGoal.LeftFoot, leftFootTarget);
-        SetIK(AvatarIKGoal.RightFoot, rightFootTarget);
+        if(leftHandTarget)
+            SetIK(AvatarIKGoal.LeftHand, leftHandTarget);
+        if (rightHandTarget)
+            SetIK(AvatarIKGoal.RightHand, rightHandTarget);
+        if (leftFootTarget)
+            SetIK(AvatarIKGoal.LeftFoot, leftFootTarget);
+        if (rightFootTarget)
+            SetIK(AvatarIKGoal.RightFoot, rightFootTarget);
     }
 
     void Update()
