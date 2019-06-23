@@ -5,14 +5,29 @@ using UnityEngine;
 public class VRIKMapper : MonoBehaviour
 {
     private Animator animator;
+    private Rigidbody rigidBody;
+
+    private Vector3 resetPosition;
+    private Quaternion resetQuaternion;
+
     public Transform leftHandTarget;
     public Transform rightHandTarget;
     public Transform leftFootTarget;
     public Transform rightFootTarget;
 
+    public bool reset = false;
+    public bool isKinematic = true;
+
+    private int rightFootState = 0;
+    private int leftFootState = 0;
+
     void Start()
     {
         animator = GetComponent<Animator>();
+        rigidBody = GetComponent<Rigidbody>();
+
+        resetPosition = transform.position;
+        resetQuaternion = transform.rotation;
     }
 
     private void SetIK(AvatarIKGoal goal, Transform target)
@@ -32,5 +47,19 @@ public class VRIKMapper : MonoBehaviour
 
     void Update()
     {
+        if (reset)
+        {
+            isKinematic = false;
+            rigidBody.isKinematic = false;
+
+            rigidBody.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+
+            transform.position = resetPosition;
+            transform.rotation = resetQuaternion;
+
+            reset = false;
+        }
+
+        rigidBody.isKinematic = isKinematic;
     }
 }
