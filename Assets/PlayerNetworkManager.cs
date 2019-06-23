@@ -39,22 +39,22 @@ public class PlayerNetworkManager : NetworkBehaviour
             if (networkID == 1)
             {
                 rightHandSphere.localPosition = rightHand.localPosition;
-                Cmd_UpdateSphere(networkID, rightHandSphere.localPosition);
+                //Cmd_UpdateSphere(networkID, rightHandSphere.localPosition);
             }
             if (networkID == 2)
             {
                 leftHandSphere.localPosition = leftHand.localPosition;
-                Cmd_UpdateSphere(networkID, rightHandSphere.localPosition);
+                //Cmd_UpdateSphere(networkID, leftHandSphere.localPosition);
             }
             if (networkID == 3)
             {
                 rightFootSphere.localPosition = rightFoot.localPosition;
-                Cmd_UpdateSphere(networkID, rightHandSphere.localPosition);
+                //Cmd_UpdateSphere(networkID, rightFootSphere.localPosition);
             }
             if (networkID == 4)
             {
                 leftFootSphere.localPosition = leftFoot.localPosition;
-                Cmd_UpdateSphere(networkID, rightHandSphere.localPosition);
+                //Cmd_UpdateSphere(networkID, leftFootSphere.localPosition);
             }
         }
     }
