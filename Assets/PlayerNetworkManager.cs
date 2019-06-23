@@ -60,21 +60,21 @@ public class PlayerNetworkManager : NetworkBehaviour
 
         if (networkID == 1)
         {
-            ikMapper.rightHandTrackedObject = mySphere;
+            //ikMapper.rightHandTrackedObject = mySphere;
             vrikmapper.rightHandTarget = mySphere;
             ikMapper.rightHandOrigin = myOrigin;
         }
 
         else if (networkID == 2)
         {
-            ikMapper.leftHandTrackedObject = mySphere;
+            //ikMapper.leftHandTrackedObject = mySphere;
             vrikmapper.leftHandTarget = mySphere;
             ikMapper.leftHandOrigin = myOrigin;
         }
 
         else if (networkID == 3)
         {
-            ikMapper.rightFootTrackedObject = mySphere;
+            //ikMapper.rightFootTrackedObject = mySphere;
             vrikmapper.rightFootTarget = mySphere;
             ikMapper.rightFootOrigin = myOrigin;
             walkmanager.rightKneeTransform = mySphere;
@@ -82,7 +82,7 @@ public class PlayerNetworkManager : NetworkBehaviour
 
         else if (networkID == 4)
         {
-            ikMapper.leftFootTrackedObject = mySphere;
+            //ikMapper.leftFootTrackedObject = mySphere;
             vrikmapper.leftFootTarget = mySphere;
             ikMapper.leftFootOrigin = myOrigin;
             walkmanager.leftKneeTransform = mySphere;
@@ -108,7 +108,7 @@ public class PlayerNetworkManager : NetworkBehaviour
 
             myHand = cameraRig.transform.Find("Device").transform;
             myHand.GetComponent<Valve.VR.SteamVR_TrackedObject>().origin = myOrigin;
-            mySphere.localPosition = myHand.localPosition;
+            mySphere.localPosition = myHand.localPosition * 10.0f;
         }
     }
 

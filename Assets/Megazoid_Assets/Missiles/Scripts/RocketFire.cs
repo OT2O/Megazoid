@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class RocketFire : NetworkBehaviour
+public class RocketFire : MonoBehaviour
 {
     public GameObject missilePrefab;
     public Transform spawnPoint;
+
+    public KeyCode fireKey;
 
     // Start is called before the first frame update
     private void Awake()
@@ -22,7 +24,8 @@ public class RocketFire : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(fireKey))
+            FireMissile();
     }
 
     public bool FireMissile()
@@ -30,8 +33,9 @@ public class RocketFire : NetworkBehaviour
 
         
         GameObject missile = Instantiate(missilePrefab);
+        missile.transform.localScale *= 0.1f;
 
-        NetworkServer.Spawn(missile);
+        //NetworkServer.Spawn(missile);
 
         missile.transform.position = spawnPoint.position;
         missile.transform.rotation = spawnPoint.rotation;

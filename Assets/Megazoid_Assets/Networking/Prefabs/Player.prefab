@@ -139,6 +139,7 @@ MonoBehaviour:
   networkManager: {fileID: 0}
   ikMapper: {fileID: 0}
   vrikmapper: {fileID: 0}
+  walkmanager: {fileID: 0}
 --- !u!114 &4235535366373196671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +208,7 @@ Transform:
   m_GameObject: {fileID: 5525149364035505525}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
   m_Children: []
   m_Father: {fileID: 7699378245318308556}
   m_RootOrder: 0

@@ -37,7 +37,7 @@ public class DestructibleBuilding : NetworkBehaviour
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<MeshCollider>().enabled = false;
         GameObject building = Instantiate(destroyedVersion, transform.position, transform.rotation);
-        NetworkServer.Spawn(building);
+        //NetworkServer.Spawn(building);
         StartCoroutine(LowerVolumeOverTime(3.0f, audioSource));
         Destroy(gameObject, 3.0f);
     }
