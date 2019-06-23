@@ -28,6 +28,7 @@ namespace Valve.VR.InteractionSystem
         protected float prevMapping = 0.0f;
         protected float mappingChangeRate;
         protected int sampleCount = 0;
+        protected float timeToReset = 1.0f;
 
         protected Interactable interactable;
 
@@ -142,6 +143,22 @@ namespace Valve.VR.InteractionSystem
 					transform.position = Vector3.Lerp( startPosition.position, endPosition.position, linearMapping.value );
 				}
 			}
+
+            if(interactable.attachedToHand == null)
+            {
+                timeToReset += Time.deltaTime;
+                if(timeToReset > 1.0f)
+                {
+                    timeToReset = 1.0f;
+                }
+
+                linearMapping.value = Mathf.Lerp(linearMapping.value, 0, timeToReset);
+                transform.position = Vector3.Lerp(startPosition.position, endPosition.position, linearMapping.value);
+            }
+            else
+            {
+                timeToReset = 0.0f;
+            }
 		}
 	}
 }

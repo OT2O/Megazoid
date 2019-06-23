@@ -75,7 +75,9 @@ namespace Valve.VR.InteractionSystem
 		[Tooltip( "The output angle value of the drive in degrees, unlimited will increase or decrease without bound, take the 360 modulus to find number of rotations" )]
 		public float outAngle;
 
-		private Quaternion start;
+        protected float timeToReset = 1.0f;
+
+        private Quaternion start;
 
 		private Vector3 worldPlaneNormal = new Vector3( 1.0f, 0.0f, 0.0f );
 		private Vector3 localPlaneNormal = new Vector3( 1.0f, 0.0f, 0.0f );
@@ -384,11 +386,10 @@ namespace Valve.VR.InteractionSystem
 			dbgObjectIndex = ( dbgObjectIndex + 1 ) % dbgObjectCount;
 		}
 
-
-		//-------------------------------------------------
-		// Updates the LinearMapping value from the angle
-		//-------------------------------------------------
-		private void UpdateLinearMapping()
+        //-------------------------------------------------
+        // Updates the LinearMapping value from the angle
+        //-------------------------------------------------
+        private void UpdateLinearMapping()
 		{
 			if ( limited )
 			{
@@ -505,7 +506,7 @@ namespace Valve.VR.InteractionSystem
 							{
 								if ( angleTmp < maxAngle && absAngleDelta < minMaxAngularThreshold )
 								{
-									outAngle = angleTmp;
+                                    outAngle = angleTmp;
 									lastHandProjected = toHandProjected;
 								}
 							}
@@ -544,5 +545,15 @@ namespace Valve.VR.InteractionSystem
 				}
 			}
 		}
-	}
+
+        public void PushUpLeverMin()
+        {
+            outAngle += 1.0f;
+        }
+
+        public void PushDownLeverMax()
+        {
+            outAngle -= 1.0f;
+        }
+    }
 }

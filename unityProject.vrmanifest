@@ -5,7 +5,7 @@
       "app_key": "application.generated.unity.megazoid.exe",
       "launch_type": "url",
       "url": "steam://launch/",
-      "action_manifest_path": "C:\\Users\\581227\\Documents\\GitHub\\Megazoid\\actions.json",
+      "action_manifest_path": "D:\\Projects\\Megazoid\\actions.json",
       "strings": {
         "en_us": {
           "name": "Megazoid [Testing]"
