@@ -16,7 +16,8 @@ public class PlayerNetworkManager : NetworkBehaviour
     {
         networkManager = FindObjectOfType<NetworkManager>();
 
-        networkID = networkManager.numPlayers;
+        if(isServer)
+            networkID = networkManager.numPlayers;
 
         rightHand = transform.Find("RightHand").transform;
         leftHand = transform.Find("LeftHand").transform;
