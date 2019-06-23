@@ -9,7 +9,6 @@ public class PlayerNetworkManager : NetworkBehaviour
     public NetworkManager networkManager;
     public IKMapperSetup ikMapper;
     public VRIKMapper vrikmapper;
-    public Valve.VR.SteamVR_TrackedObject myDeivce;
     Transform trackedCalibrators;
     [SyncVar]
     int networkID;
@@ -64,6 +63,7 @@ public class PlayerNetworkManager : NetworkBehaviour
         if (isLocalPlayer && localPlayerAuthority)
         {
             myHand = GameObject.Find("[CameraRig]").transform.Find("Device").transform;
+            myHand.GetComponent<Valve.VR.SteamVR_TrackedObject>().origin = myOrigin;
             mySphere.localPosition = myHand.localPosition;
         }
     }

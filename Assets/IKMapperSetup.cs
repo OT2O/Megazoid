@@ -62,6 +62,11 @@ public class IKMapperSetup : MonoBehaviour
         PopulateDropdown(rightFootDropdown);
         PopulateDropdown(leftFootDropdown);
 
+        rightHandTrackedObject.index = (Valve.VR.SteamVR_TrackedObject.EIndex)3;
+        leftHandTrackedObject.index = (Valve.VR.SteamVR_TrackedObject.EIndex)4;
+        rightFootTrackedObject.index = (Valve.VR.SteamVR_TrackedObject.EIndex)4;
+        leftFootTrackedObject.index = (Valve.VR.SteamVR_TrackedObject.EIndex)3;
+
         Button rightHandButton = transform.Find("RightHandCalibrate").GetComponent<Button>();
         Button leftHandButton = transform.Find("LeftHandCalibrate").GetComponent<Button>();
         Button rightFootButton = transform.Find("RightFootCalibrate").GetComponent<Button>();
@@ -77,6 +82,5 @@ public class IKMapperSetup : MonoBehaviour
 
     void Update()
     {
-        
     }
 }
