@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class DestructibleBuilding : NetworkBehaviour
+public class DestructibleBuilding : MonoBehaviour
 {
     public GameObject destroyedVersion;
     public List<AudioClip> _audioClips;

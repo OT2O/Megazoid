@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionPrefab: {fileID: 1121192042590650, guid: 566799d9998d0c24e8fedeeac1007036,
     type: 3}
-  explosionForce: 500
+  explosionForce: 1000
   _audioClips:
   - {fileID: 8300000, guid: abd445d2ef51de049addbe5de539ad0e, type: 3}
   - {fileID: 8300000, guid: 5278f6918c38ea54287d70e545d0e490, type: 3}

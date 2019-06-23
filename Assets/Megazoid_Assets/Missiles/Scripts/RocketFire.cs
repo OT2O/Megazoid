@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using Valve.VR;
 
 public class RocketFire : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class RocketFire : MonoBehaviour
     public Transform spawnPoint;
 
     public KeyCode fireKey;
+    public SteamVR_Action_Boolean _trigger;
 
     // Start is called before the first frame update
     private void Awake()
@@ -26,6 +28,11 @@ public class RocketFire : MonoBehaviour
     {
         if (Input.GetKeyDown(fireKey))
             FireMissile();
+
+        if (_trigger.GetStateDown(SteamVR_Input_Sources.LeftHand) || _trigger.GetStateDown(SteamVR_Input_Sources.RightHand))
+        {
+            FireMissile();
+        }
     }
 
     public bool FireMissile()

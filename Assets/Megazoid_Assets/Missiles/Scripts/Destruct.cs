@@ -40,14 +40,14 @@ public class Destruct : MonoBehaviour
         yield return new WaitForEndOfFrame();
 
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-        Collider[] colliders = Physics.OverlapSphere(transform.position, 20.0f);
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 20.0f / 5.0f);
         for (int i = 0; i < colliders.Length; i++)
         {
             Rigidbody rBody = colliders[i].GetComponent<Rigidbody>();
             if (rBody)
             {
                 rBody.gameObject.SendMessage("DestroyBuilding", SendMessageOptions.DontRequireReceiver);
-                rBody.AddExplosionForce(explosionForce, transform.position, 50.0f);
+                rBody.AddExplosionForce(explosionForce, transform.position, 50.0f / 5.0f);
             }
         }
     }
