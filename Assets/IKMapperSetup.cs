@@ -10,10 +10,10 @@ public class IKMapperSetup : MonoBehaviour
     public Transform leftFootOrigin;
     public Transform rightFootOrigin;
 
-    public Valve.VR.SteamVR_TrackedObject leftHandTrackedObject;
-    public Valve.VR.SteamVR_TrackedObject rightHandTrackedObject;
-    public Valve.VR.SteamVR_TrackedObject leftFootTrackedObject;
-    public Valve.VR.SteamVR_TrackedObject rightFootTrackedObject;
+    public Transform leftHandTrackedObject;
+    public Transform rightHandTrackedObject;
+    public Transform leftFootTrackedObject;
+    public Transform rightFootTrackedObject;
 
     public Vector3 leftHandOriginOffset;
     public Vector3 rightHandOriginOffset;
@@ -26,14 +26,14 @@ public class IKMapperSetup : MonoBehaviour
             dropdown.options.Add(new Dropdown.OptionData(i.ToString()));
     }
 
-    private void DropdownValueChanged(Dropdown dropdown, Valve.VR.SteamVR_TrackedObject trackedObject)
+    private void DropdownValueChanged(Dropdown dropdown, Transform trackedObject)
     {
-        trackedObject.index = (Valve.VR.SteamVR_TrackedObject.EIndex)dropdown.value;
+      //  trackedObject.index = (Valve.VR.SteamVR_TrackedObject.EIndex)dropdown.value;
     }
 
-    private void Calibrate(Transform origin, Valve.VR.SteamVR_TrackedObject trackedObject, Vector3 offset)
+    private void Calibrate(Transform origin, Transform trackedObject, Vector3 offset)
     {
-        origin.position = -trackedObject.transform.position + offset;
+        origin.position = -trackedObject.position + offset;
         //origin.rotation = Quaternion.Inverse(trackedObject.transform.rotation);
     }
 

@@ -18,117 +18,42 @@ public class PlayerNetworkManager : NetworkBehaviour
 
         if(isServer)
             networkID = networkManager.numPlayers;
-
-        rightHand = transform.Find("RightHand").transform;
-        leftHand = transform.Find("LeftHand").transform;
-        rightFoot = transform.Find("RightFoot").transform;
-        leftFoot = transform.Find("LeftFoot").transform;
+        
         trackedCalibrators = GameObject.Find("TrackerCalibrators").transform;
     }
 
     private void Update()
     {
+        rightHandSphere = trackedCalibrators.Find("RightHandSphere");
+        leftHandSphere = trackedCalibrators.Find("LeftHandSphere");
+        rightFootSphere = trackedCalibrators.Find("RightFootSphere");
+        leftFootSphere = trackedCalibrators.Find("LeftFootSphere");
 
-        switch (networkID)
+        rightHand = GameObject.Find("[CameraRig]").transform.Find("RightHand").transform;
+        leftHand = GameObject.Find("[CameraRig]").transform.Find("LeftHand").transform;
+        rightFoot = GameObject.Find("[CameraRig]").transform.Find("RightFoot").transform;
+        leftFoot = GameObject.Find("[CameraRig]").transform.Find("LeftFoot").transform;
+
+        if (isLocalPlayer)
         {
-            case 1:
-                rightHandSphere = trackedCalibrators.Find("RightHandSphere").transform;
+            if (networkID == 1)
+            {
                 rightHandSphere.localPosition = rightHand.localPosition;
-                rightHandSphere.localEulerAngles = rightHand.localEulerAngles;
-
-                if (isLocalPlayer)
-                {
-                    rightHand.localPosition = rightHandSphere.localPosition;
-                    rightHand.localEulerAngles = rightHandSphere.localEulerAngles;
-                }
-
-                break;
-            case 2:
-                leftHandSphere = trackedCalibrators.Find("LeftHandSphere").transform;
+            }
+            if (networkID == 2)
+            {
                 leftHandSphere.localPosition = leftHand.localPosition;
-                leftHandSphere.localEulerAngles = leftHand.localEulerAngles;
-
-                if (isLocalPlayer)
-                {
-                    leftHand.localPosition = leftHandSphere.localPosition;
-                    leftHand.localEulerAngles = leftHandSphere.localEulerAngles;
-                }
-                break;
-            case 3:
-                rightFootSphere = trackedCalibrators.Find("RightFootSphere").transform;
+            }
+            if (networkID == 3)
+            {
                 rightFootSphere.localPosition = rightFoot.localPosition;
-                rightFootSphere.localEulerAngles = rightFoot.localEulerAngles;
-
-                if (isLocalPlayer)
-                {
-                    rightFoot.localPosition = rightFootSphere.localPosition;
-                    rightFoot.localEulerAngles = rightFootSphere.localEulerAngles;
-                }
-                break;
-            case 4:
-                leftFootSphere = trackedCalibrators.Find("LeftFootSphere").transform;
+            }
+            if (networkID == 4)
+            {
                 leftFootSphere.localPosition = leftFoot.localPosition;
-                leftFootSphere.localEulerAngles = leftFoot.localEulerAngles;
-
-                if (isLocalPlayer)
-                {
-                    leftFoot.localPosition = leftFootSphere.localPosition;
-                    leftFoot.localEulerAngles = leftFootSphere.localEulerAngles;
-                }
-                break;
+            }
         }
+        
 
-        //if (isLocalPlayer && !isServer)
-        //{
-        //    if (rightHandSphere)
-        //    {
-        //        rightHand.localPosition = rightHandSphere.localPosition;
-        //        rightHand.localEulerAngles = rightHandSphere.localEulerAngles;
-        //    }
-
-        //    if (leftHandSphere)
-        //    {
-        //        leftHand.localPosition = leftHandSphere.localPosition;
-        //        leftHand.localEulerAngles = leftHandSphere.localEulerAngles;
-        //    }
-
-        //    if (rightFootSphere)
-        //    {
-        //        rightFoot.localPosition = rightFootSphere.localPosition;
-        //        rightFoot.localEulerAngles = rightFootSphere.localEulerAngles;
-        //    }
-
-        //    if (leftFootSphere)
-        //    {
-        //        leftFoot.localPosition = leftFootSphere.localPosition;
-        //        leftFoot.localEulerAngles = leftFootSphere.localEulerAngles;
-        //    }
-        //}
-        //else if (isServer)
-        //{
-        //    if (rightHandSphere)
-        //    {
-        //        rightHandSphere.localPosition = rightHand.localPosition;
-        //        rightHandSphere.localEulerAngles = rightHand.localEulerAngles;
-        //    }
-
-        //    if (leftHandSphere)
-        //    {
-        //        leftHandSphere.localPosition = leftHand.localPosition;
-        //        leftHandSphere.localEulerAngles = leftHand.localEulerAngles;
-        //    }
-
-        //    if (rightFootSphere)
-        //    {
-        //        rightFootSphere.localPosition = rightFoot.localPosition;
-        //        rightFootSphere.localEulerAngles = rightFoot.localEulerAngles;
-        //    }
-
-        //    if (leftFootSphere)
-        //    {
-        //        leftFootSphere.localPosition = leftFoot.localPosition;
-        //        leftFootSphere.localEulerAngles = leftFoot.localEulerAngles;
-        //    }
-        //}
     }
 }
