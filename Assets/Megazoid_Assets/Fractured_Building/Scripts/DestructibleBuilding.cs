@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class DestructibleBuilding : MonoBehaviour
+public class DestructibleBuilding : NetworkBehaviour
 {
     public GameObject destroyedVersion;
     
@@ -17,7 +18,8 @@ public class DestructibleBuilding : MonoBehaviour
     {
         if (collision.impulse.magnitude > 15.0f)
         {
-            Instantiate(destroyedVersion, transform.position, transform.rotation);
+            GameObject building = Instantiate(destroyedVersion, transform.position, transform.rotation);
+            NetworkServer.Spawn(building);
             Destroy(gameObject);
         }
 

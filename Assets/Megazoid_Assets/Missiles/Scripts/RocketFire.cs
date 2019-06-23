@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class RocketFire : MonoBehaviour
+public class RocketFire : NetworkBehaviour
 {
     public GameObject missilePrefab;
     public Transform spawnPoint;
@@ -27,8 +27,12 @@ public class RocketFire : MonoBehaviour
 
     public bool FireMissile()
     {
+
         
         GameObject missile = Instantiate(missilePrefab);
+
+        NetworkServer.Spawn(missile);
+
         missile.transform.position = spawnPoint.position;
         missile.transform.rotation = spawnPoint.rotation;
 

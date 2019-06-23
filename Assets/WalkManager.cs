@@ -34,6 +34,11 @@ public class WalkManager : MonoBehaviour
 
     void Update()
     {
+        if(!leftKneeTransform || !rightKneeTransform)
+        {
+            return;
+        }
+
         if (leftMovementCooldown > 0.0f)
         {
             ApplyForce(true);

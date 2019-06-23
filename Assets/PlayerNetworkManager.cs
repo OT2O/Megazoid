@@ -8,7 +8,8 @@ public class PlayerNetworkManager : NetworkBehaviour
     public Transform mySphere, myOrigin;
     public NetworkManager networkManager;
     public IKMapperSetupLocal ikMapper;
-    public VRIKMapperLocal vrikmapper;
+    public VRIKMapper vrikmapper;
+    public WalkManager walkmanager;
     Transform trackedCalibrators;
     SpawnPoint[] spawnPoints;
     RocketFire[] rocketFire;
@@ -30,9 +31,10 @@ public class PlayerNetworkManager : NetworkBehaviour
         myOrigin = transform.GetChild(1);
         mySphere = transform.GetChild(0);
         ikMapper = FindObjectOfType<IKMapperSetupLocal>();
-        vrikmapper = FindObjectOfType<VRIKMapperLocal>();
+        vrikmapper = FindObjectOfType<VRIKMapper>();
+        walkmanager = FindObjectOfType<WalkManager>();
 
-      
+
     }
 
     private void Update()
@@ -75,6 +77,7 @@ public class PlayerNetworkManager : NetworkBehaviour
             ikMapper.rightFootTrackedObject = mySphere;
             vrikmapper.rightFootTarget = mySphere;
             ikMapper.rightFootOrigin = myOrigin;
+            walkmanager.rightKneeTransform = mySphere;
         }
 
         else if (networkID == 4)
@@ -82,6 +85,7 @@ public class PlayerNetworkManager : NetworkBehaviour
             ikMapper.leftFootTrackedObject = mySphere;
             vrikmapper.leftFootTarget = mySphere;
             ikMapper.leftFootOrigin = myOrigin;
+            walkmanager.leftKneeTransform = mySphere;
 
         }
 
@@ -102,9 +106,9 @@ public class PlayerNetworkManager : NetworkBehaviour
                 }
             }
 
-            //myHand = cameraRig.transform.Find("Device").transform;
-            //myHand.GetComponent<Valve.VR.SteamVR_TrackedObject>().origin = myOrigin;
-            //mySphere.localPosition = myHand.localPosition;
+            myHand = cameraRig.transform.Find("Device").transform;
+            myHand.GetComponent<Valve.VR.SteamVR_TrackedObject>().origin = myOrigin;
+            mySphere.localPosition = myHand.localPosition;
         }
     }
 
