@@ -996,6 +996,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: player_starts
       objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: ec8377932df8c8840befd85051e72184, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: ec8377932df8c8840befd85051e72184, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
@@ -1381,7 +1385,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &759660730
 AudioListener:
   m_ObjectHideFlags: 0
@@ -4370,6 +4374,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ultra_Megazoid
+      objectReference: {fileID: 0}
+    - target: {fileID: 1775272196786412300, guid: 7199083dfc8d07a48ab5f3c69bbcb8cd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1804069984626831232, guid: 7199083dfc8d07a48ab5f3c69bbcb8cd,
         type: 3}
