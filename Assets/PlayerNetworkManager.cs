@@ -10,12 +10,18 @@ public class PlayerNetworkManager : NetworkBehaviour
     public IKMapperSetup ikMapper;
     public VRIKMapper vrikmapper;
     Transform trackedCalibrators;
+    SpawnPoint[] spawnPoints;
+    RocketFire[] rocketFire;
+
     [SyncVar]
     int networkID;
 
 
     private void Start()
     {
+        rocketFire = FindObjectsOfType<RocketFire>();
+        spawnPoints = FindObjectsOfType<SpawnPoint>();
+
         networkManager = FindObjectOfType<NetworkManager>();
 
         if(isServer)
@@ -31,6 +37,25 @@ public class PlayerNetworkManager : NetworkBehaviour
 
     private void Update()
     {
+        GameObject cameraRig = GameObject.Find("[CameraRig]");
+        if (isServer)
+        {
+            if (Input.GetKeyDown(KeyCode.Keypad1))
+            {
+                CmdReset();
+            }
+
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                CmdDoFireOne();
+            }
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                CmdDoFireOther();
+            }
+        }
+        
+
         if (networkID == 1)
         {
             ikMapper.rightHandTrackedObject = mySphere;
@@ -62,11 +87,42 @@ public class PlayerNetworkManager : NetworkBehaviour
 
         if (isLocalPlayer && localPlayerAuthority)
         {
-            myHand = GameObject.Find("[CameraRig]").transform.Find("Device").transform;
+            foreach (SpawnPoint sp in spawnPoints)
+            {
+                if (sp.spawnPointID == networkID)
+                {
+                    transform.parent = sp.transform;
+                    transform.localPosition = Vector3.zero;
+                    transform.localEulerAngles = Vector3.zero;
+
+
+                    cameraRig.transform.parent = sp.transform;
+                    cameraRig.transform.localPosition = Vector3.zero;
+                    cameraRig.transform.localEulerAngles = Vector3.zero;
+                }
+            }
+
+            myHand = cameraRig.transform.Find("Device").transform;
             myHand.GetComponent<Valve.VR.SteamVR_TrackedObject>().origin = myOrigin;
             mySphere.localPosition = myHand.localPosition;
         }
     }
 
-    
+    [Command]
+    void CmdDoFireOne()
+    {
+        rocketFire[0].FireMissile();
+    }
+
+    [Command]
+    void CmdDoFireOther()
+    {
+        rocketFire[1].FireMissile();
+    }
+
+    [Command]
+    void CmdReset()
+    {
+        vrikmapper.reset = true;
+    }
 }

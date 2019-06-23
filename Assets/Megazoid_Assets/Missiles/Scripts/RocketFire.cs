@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 public class RocketFire : MonoBehaviour
 {
@@ -24,15 +25,10 @@ public class RocketFire : MonoBehaviour
 
     }
 
-    public bool FireMissile(GameObject _missilePrefab)
+    public bool FireMissile()
     {
-        GameObject usedprefab = missilePrefab;
-        if (_missilePrefab != null)
-        {
-            usedprefab = _missilePrefab;
-        }
-
-        GameObject missile = Instantiate(usedprefab);
+        
+        GameObject missile = Instantiate(missilePrefab);
         missile.transform.position = spawnPoint.position;
         missile.transform.rotation = spawnPoint.rotation;
 
