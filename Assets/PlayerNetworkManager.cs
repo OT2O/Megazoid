@@ -39,21 +39,43 @@ public class PlayerNetworkManager : NetworkBehaviour
             if (networkID == 1)
             {
                 rightHandSphere.localPosition = rightHand.localPosition;
+                Cmd_UpdateSphere(networkID, rightHandSphere.localPosition);
             }
             if (networkID == 2)
             {
                 leftHandSphere.localPosition = leftHand.localPosition;
+                Cmd_UpdateSphere(networkID, rightHandSphere.localPosition);
             }
             if (networkID == 3)
             {
                 rightFootSphere.localPosition = rightFoot.localPosition;
+                Cmd_UpdateSphere(networkID, rightHandSphere.localPosition);
             }
             if (networkID == 4)
             {
                 leftFootSphere.localPosition = leftFoot.localPosition;
+                Cmd_UpdateSphere(networkID, rightHandSphere.localPosition);
             }
         }
-        
-
+    }
+    [Command]
+    private void Cmd_UpdateSphere(int netID, Vector3 localPos)
+    {
+        if (netID == 1)
+        {
+            rightHandSphere.localPosition = localPos;
+        }
+        if (netID == 2)
+        {
+            leftHandSphere.localPosition = localPos;
+        }
+        if (netID == 3)
+        {
+            rightFootSphere.localPosition = localPos;
+        }
+        if (netID == 4)
+        {
+            leftFootSphere.localPosition = localPos;
+        }
     }
 }
