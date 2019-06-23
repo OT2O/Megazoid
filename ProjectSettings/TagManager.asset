@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - TysonsWrath
+  - projectile
+  - FxTemporaire
+  - Ground
   layers:
   - Default
   - TransparentFX
