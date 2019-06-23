@@ -44,7 +44,7 @@ public class RocketFire : MonoBehaviour
         rigidboy.useGravity = true;
         rigidboy.isKinematic = false;
 
-        rigidboy.AddRelativeForce(missile.transform.forward * 1000);
+        rigidboy.AddRelativeForce(missile.transform.forward * 5000);
 
         return true;
     }

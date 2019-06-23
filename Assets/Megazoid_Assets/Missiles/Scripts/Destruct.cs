@@ -21,13 +21,20 @@ public class Destruct : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        StartCoroutine(BlastAfterFrame(collision));
+    }
+
+    private IEnumerator BlastAfterFrame(Collision collision)
+    {
+        yield return new WaitForEndOfFrame();
+
         GameObject.Destroy(gameObject);
         Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         Collider[] colliders = Physics.OverlapSphere(transform.position, 50.0f);
         for (int i = 0; i < colliders.Length; i++)
         {
             Rigidbody rBody = colliders[i].GetComponent<Rigidbody>();
-            if(rBody)
+            if (rBody)
             {
                 rBody.AddExplosionForce(explosionForce, transform.position, 50.0f);
             }

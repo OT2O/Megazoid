@@ -5,9 +5,21 @@ using UnityEngine;
 public class DestructibleBuilding : MonoBehaviour
 {
     public GameObject destroyedVersion;
-    private void OnMouseDown()
+    
+
+    //private void OnMouseDown() 
+    //{
+    //    Instantiate(destroyedVersion, transform.position, transform.rotation);
+    //    Destroy(gameObject);
+    //}
+
+    private void OnCollisionEnter(Collision collision)
     {
-        Instantiate(destroyedVersion, transform.position, transform.rotation);
-        Destroy(gameObject);
+        if (collision.impulse.magnitude > 15.0f)
+        {
+            Instantiate(destroyedVersion, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
+
     }
 }
